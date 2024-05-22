@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="600.0" maxWidth="550.0" minHeight="600.0" minWidth="550.0" prefHeight="600.0" prefWidth="600.0" stylesheets="@css/index.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.batsworks.interfaces.controller.CadastroController">
+   <children>
+      <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="550.0" styleClass="back">
+         <children>
+            <FontAwesomeIconView glyphName="SHIELD" size="80" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets left="50.0" right="30.0" />
+               </HBox.margin>
+            </FontAwesomeIconView>
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Cadastro de Usuario" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <VBox alignment="TOP_CENTER" layoutY="100.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="550.0" spacing="15.0">
+         <children>
+            <VBox>
+               <children>
+                  <HBox prefHeight="50.0" prefWidth="200.0" spacing="15.0">
+                     <children>
+                        <Label maxHeight="1.7976931348623157E308" text="Nome" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="inputNome" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Nome" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <Label fx:id="errorNome" maxWidth="1.7976931348623157E308" text="Nome contem algum problema" textFill="RED">
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <HBox prefHeight="50.0" prefWidth="200.0" spacing="15.0">
+                     <children>
+                        <Label maxHeight="1.7976931348623157E308" text="Email" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="inputEmail" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Email" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <Label fx:id="errorEmail" maxWidth="1.7976931348623157E308" text="Email contem algum problema" textFill="RED" />
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <HBox prefHeight="50.0" prefWidth="200.0" spacing="15.0">
+                     <children>
+                        <Label maxHeight="1.7976931348623157E308" text="Endereço" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="inputEndereco" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Endereco" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <Label fx:id="errorEndereco" maxWidth="1.7976931348623157E308" text="Endereco contem algum problema" textFill="RED" />
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <HBox prefHeight="50.0" prefWidth="200.0" spacing="15.0">
+                     <children>
+                        <Label maxHeight="1.7976931348623157E308" text="Idade" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="inputIdade" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Idade" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <Label fx:id="errorIdade" maxWidth="1.7976931348623157E308" text="Idade" textFill="RED" />
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <HBox prefHeight="50.0" prefWidth="200.0" spacing="15.0">
+                     <children>
+                        <Label maxHeight="1.7976931348623157E308" text="Senha" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="inputSenha" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="senha" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <Label fx:id="errorSenha" maxWidth="1.7976931348623157E308" text="Senha contem algum problema" textFill="RED" />
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <HBox prefHeight="50.0" prefWidth="200.0" spacing="15.0">
+                     <children>
+                        <Label maxHeight="1.7976931348623157E308" text="Confirmar Senha" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="inputSenhaConfirm" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="confirme a senha" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <Label fx:id="errorSenhaConfirm" maxWidth="1.7976931348623157E308" text="Senha nao esta igual a anterior ou contem problemas" textFill="RED" />
+               </children>
+            </VBox>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onEntrar" text="CADASTRAR" VBox.vgrow="ALWAYS" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onSair" text="SAIR" />
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>
