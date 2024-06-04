@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="650.0" styleClass="back" stylesheets="@css/index.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.batsworks.interfaces.AboutView">
+   <Text layoutX="60.0" layoutY="272.0" lineSpacing="10.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bem-vindo ao BastWorks Market, sua aplicação de compra de produtos online com acesso direto ao fornecedor! Nossa plataforma conecta você aos melhores produtores e fabricantes, garantindo preços mais baixos e uma seleção de produtos de alta qualidade. Com uma interface intuitiva e segura, oferecemos uma experiência de compra fácil e eficiente, eliminando intermediários e proporcionando maior transparência. No CompraDireta, você pode acompanhar o status do seu pedido em tempo real e desfrutar de um atendimento ao cliente dedicado. Simplifique suas compras e descubra as vantagens de comprar diretamente de quem faz!" wrappingWidth="530.0" />
+   <ImageView fitHeight="228.0" fitWidth="274.0" layoutX="204.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@images/default.png" />
+   </ImageView>
+   <Button layoutX="28.0" layoutY="32.0" mnemonicParsing="false" onAction="#sair">
+      <graphic>
+         <FontAwesomeIconView fx:id="returnIcon" fill="WHITE" glyphName="ARROW_LEFT" size="25" />
+      </graphic>
+   </Button>
+</AnchorPane>

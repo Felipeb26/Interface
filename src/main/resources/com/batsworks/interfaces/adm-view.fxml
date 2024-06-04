@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Tab?>
@@ -8,14 +9,37 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="650.0" stylesheets="@css/index.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.batsworks.interfaces.controller.AdmController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="125.0" spacing="30.0" styleClass="back" HBox.hgrow="SOMETIMES">
+      <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="127.0" spacing="30.0" styleClass="back" HBox.hgrow="SOMETIMES">
          <children>
             <Button mnemonicParsing="false" onAction="#onSair" text="VOLTAR" VBox.vgrow="ALWAYS" />
             <Button mnemonicParsing="false" onAction="#onRemove" text="REMOVE" VBox.vgrow="ALWAYS" />
-            <Button mnemonicParsing="false" onAction="#onAdd" text="ADD" />
+            <Button mnemonicParsing="false" onAction="#onAdd" prefHeight="34.0" prefWidth="96.0" text="USER">
+               <font>
+                  <Font size="12.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="#f8d7d7" glyphName="PLUS" />
+               </graphic></Button>
+            <Button mnemonicParsing="false" onAction="#onAddProduto" prefHeight="34.0" prefWidth="96.0" text="PROD">
+               <font>
+                  <Font size="12.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="#f8d7d7" glyphName="PLUS" />
+               </graphic>
+            </Button>
+            <Button fx:id="btnShowUser" mnemonicParsing="false" onAction="#updateUser">
+               <graphic>
+                  <FontAwesomeIconView glyphName="GROUP" size="30" />
+               </graphic>
+               <padding>
+                  <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+               </padding>
+            </Button>
          </children>
          <padding>
             <Insets bottom="30.0" left="10.0" right="10.0" top="30.0" />

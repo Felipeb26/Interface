@@ -1,0 +1,7 @@
+
+¡
+java:S2142"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(”ı¾8ä±Ùı1J$2fa4e334-f51c-48ca-b232-65d94665b17f
+“
+java:S2236"PRefactor the synchronisation mechanism to not use a Thread instance as a monitor(–¾‚8ä±Ùı1J$2d5bf575-ef0e-43ca-a619-c550b8d409c0
+}
+java:S2274":Remove this call to "wait" or move it into a "while" loop.(–¾‚8ä±Ùı1J$c21ae541-010c-476d-9aa0-b14a08c5142b

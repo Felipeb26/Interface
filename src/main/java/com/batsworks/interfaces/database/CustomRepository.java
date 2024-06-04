@@ -1,6 +1,7 @@
 package com.batsworks.interfaces.database;
 
 import com.batsworks.interfaces.utils.FormatString;
+import lombok.extern.slf4j.Slf4j;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,14 +10,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
-import java.util.logging.Logger;
 
+@Slf4j
 public class CustomRepository<T> implements Repository<T> {
 
-    private static final Logger log = Logger.getLogger(CustomRepository.class.getName());
 
     private final Connection connection;
-    final transient Function<ResultSet, T> rowMapper;
+    final Function<ResultSet, T> rowMapper;
     private final String dbEntity;
 
     private CustomRepository() {
@@ -40,7 +40,7 @@ public class CustomRepository<T> implements Repository<T> {
             }
             return t;
         } catch (Exception e) {
-            log.severe(e.getMessage());
+            log.error(e.getMessage());
             return null;
         }
     }
@@ -57,7 +57,7 @@ public class CustomRepository<T> implements Repository<T> {
             }
             return t;
         } catch (Exception e) {
-            log.severe(e.getMessage());
+            log.error(e.getMessage());
             return null;
         }
     }
@@ -74,7 +74,7 @@ public class CustomRepository<T> implements Repository<T> {
             }
             return ts;
         } catch (Exception e) {
-            log.severe(e.getMessage());
+            log.error(e.getMessage());
             return Collections.emptyList();
         }
     }
@@ -89,7 +89,7 @@ public class CustomRepository<T> implements Repository<T> {
             pst.executeQuery();
             return true;
         } catch (Exception e) {
-            log.severe(e.getMessage());
+            log.error(e.getMessage());
             return false;
         }
     }
@@ -103,7 +103,7 @@ public class CustomRepository<T> implements Repository<T> {
             pst.executeQuery();
             return true;
         } catch (Exception e) {
-            log.severe(e.getMessage());
+            log.error(e.getMessage());
             return false;
         }
     }
@@ -116,7 +116,7 @@ public class CustomRepository<T> implements Repository<T> {
             ResultSet rs = pst.executeQuery();
             return rs.rowDeleted();
         } catch (Exception e) {
-            log.severe(e.getMessage());
+            log.error(e.getMessage());
             return false;
         }
     }

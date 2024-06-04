@@ -1,5 +1,7 @@
 package com.batsworks.interfaces.database;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.concurrent.ExecutorService;
@@ -8,9 +10,9 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
+@Slf4j
 public class SQLiteConnection {
 
-    private static final Logger log = Logger.getLogger(SQLiteConnection.class.getName());
     private static Connection connection;
 
     private SQLiteConnection() {
@@ -26,7 +28,7 @@ public class SQLiteConnection {
             lateCompile();
             return connection;
         } catch (Exception e) {
-            log.severe(e.getMessage());
+            log.error(e.getMessage());
             return null;
         }
     }
@@ -44,7 +46,7 @@ public class SQLiteConnection {
                     integer++;
                     PreCompile.executeQuery();
                 } catch (Exception e) {
-                    log.severe(e.getMessage());
+                    log.error(e.getMessage());
                 }
                 executor.shutdown();
             });

@@ -21,8 +21,6 @@ l
 <src/main/java/com/batsworks/interfaces/HelloApplication.java,8/d/8dc9bce29e7aec4c0eb4b9b7cc6a3b41baf2d0b9
 =
 Market.sqlite,d/2/d233b1bdac02cee833b31cf3836a96a25ad1a6d1
-n
->src/main/java/com/batsworks/interfaces/utils/FindResource.java,d/c/dca0fc3a392e9b58e2a7305e50078d21b417bbbe
 h
 8src/main/java/com/batsworks/interfaces/CadastroView.java,3/f/3fd68005e2ebaac627ece11b27ed2314de6ad908
 n
@@ -41,3 +39,25 @@ j
 :src/main/java/com/batsworks/interfaces/utils/Currency.java,f/3/f38b36944f215e52925692f09a1c07117804ade1
 y
 Isrc/main/java/com/batsworks/interfaces/controller/CadastroController.java,1/6/16779e6755249c28f27f030633ca4d6431e25650
+e
+5src/main/java/com/batsworks/interfaces/AboutView.java,7/4/74cd8dca285215285534ec18411740d6ceb05364
+s
+Csrc/main/java/com/batsworks/interfaces/utils/DefaultController.java,5/3/535fa9fc05311b342ea43364d9b5bae378a99de5
+n
+>src/main/java/com/batsworks/interfaces/notification/Alert.java,5/3/5304afb15129a45090315b34b34dc35c421bfdb3
+y
+Isrc/main/java/com/batsworks/interfaces/notification/NotificationType.java,3/2/32f296130eeab1526e92648d8f3370c712ed3a67
+d
+4src/main/java/com/batsworks/interfaces/UserView.java,6/6/6637110a05103030091189c9774e36b4ed4415c9
+u
+Esrc/main/java/com/batsworks/interfaces/controller/UserController.java,8/e/8e306bbb13dee03e841702e1656c3e8a121a1be9
+z
+Jsrc/main/java/com/batsworks/interfaces/controller/CadastroProdutoView.java,a/7/a78f5ae489e5bffe8df1251b6049c7718a19f71f
+o
+?src/main/java/com/batsworks/interfaces/CadastroProdutoView.java,3/6/36c8dd2527c057329e179f811d9beb3a595ef53c
+n
+>src/main/java/com/batsworks/interfaces/navigation/Screens.java,0/5/0518b6413a65de614807524bf4be69d39c5e2d66
+m
+=src/main/java/com/batsworks/interfaces/navigation/Change.java,7/2/72da6fe230ca954b2319342ad3ab53717236f067
+f
+6src/main/java/com/batsworks/interfaces/utils/Wait.java,7/6/76c6afa851b44dd02a8fad407c078fbfb7927f49

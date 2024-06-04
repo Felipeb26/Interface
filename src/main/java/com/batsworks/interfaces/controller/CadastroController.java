@@ -3,25 +3,28 @@ package com.batsworks.interfaces.controller;
 import com.batsworks.interfaces.HelloController;
 import com.batsworks.interfaces.database.CustomRepository;
 import com.batsworks.interfaces.model.UsuariosEntity;
-import com.batsworks.interfaces.utils.FindResource;
+import com.batsworks.interfaces.navigation.Change;
+import com.batsworks.interfaces.navigation.Screens;
+import com.batsworks.interfaces.utils.DefaultController;
 import com.batsworks.interfaces.utils.RegexPattern;
 import com.batsworks.interfaces.utils.Validate;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import lombok.extern.slf4j.Slf4j;
 
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Logger;
 
 import static java.lang.Long.parseLong;
 
-public class CadastroController implements Initializable {
+@Slf4j
+public class CadastroController extends DefaultController implements Initializable {
 
-    private static final Logger log = Logger.getLogger(CadastroController.class.getName());
     CustomRepository<UsuariosEntity> repository;
     @FXML
     Label errorNome;
@@ -47,6 +50,9 @@ public class CadastroController implements Initializable {
     TextField inputSenha;
     @FXML
     TextField inputSenhaConfirm;
+    @FXML
+    Button btnSair;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -75,18 +81,10 @@ public class CadastroController implements Initializable {
                 .idade(parseLong(idade))
                 .senha(parseLong(senha))
                 .build());
-        FindResource.changeScreen("hello-view.fxml", HelloController.class.getName(), event);
+        Change.screen(Screens.MAIN, HelloController.class.getName(), event);
 
     }
 
-    @FXML
-    protected void onSair(ActionEvent event) {
-        try {
-            FindResource.changeScreen("hello-view.fxml", HelloController.class.getName(), event);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     private boolean validateManyField(String nome, String email, String endereco, String idade, String senha, String senhaConfirm) {
 
@@ -98,5 +96,14 @@ public class CadastroController implements Initializable {
         var enderecoIsOK = Validate.textField(RegexPattern.NOME, endereco, errorEndereco);
 
         return List.of(nomeIsOK, enderecoIsOK, emailIsOK, idadeIsOK, senhaIsOK, senhaConfirmIsOK).contains(Boolean.FALSE);
+    }
+
+    @Override
+    public void loadValues(Object... args) {
+        if (args.length == 0) return;
+        if (args[0].toString().equals("hide-sair")) {
+            btnSair.setVisible(false);
+        }
+        super.loadValues(args);
     }
 }

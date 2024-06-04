@@ -1,5 +1,7 @@
 package com.batsworks.interfaces.database;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -9,11 +11,10 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
-import java.util.logging.Logger;
 
+@Slf4j
 public class PreCompile {
 
-    private static final Logger log = Logger.getLogger(PreCompile.class.getName());
     private static Connection connection = SQLiteConnection.connector();
 
     PreCompile() {
@@ -53,16 +54,15 @@ public class PreCompile {
         String[] querys = findQuerys().split(";");
         try {
             for (var query : querys) {
-                log.info(query.concat("\n"));
+                log.info(query);
                 try (PreparedStatement pst = connection.prepareStatement(query)) {
                     pst.executeUpdate();
                 } catch (Exception e) {
-                    log.info(e.getMessage().concat("\n"));
-                    continue;
+                    log.error(e.getMessage());
                 }
             }
         } catch (Exception e) {
-            log.severe(e.getMessage());
+            log.error(e.getMessage());
         }
     }
 

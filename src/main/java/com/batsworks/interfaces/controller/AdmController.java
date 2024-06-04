@@ -5,8 +5,10 @@ import com.batsworks.interfaces.HelloController;
 import com.batsworks.interfaces.database.CustomRepository;
 import com.batsworks.interfaces.model.ProdutosEntity;
 import com.batsworks.interfaces.model.UsuariosEntity;
+import com.batsworks.interfaces.navigation.Change;
+import com.batsworks.interfaces.navigation.Screens;
 import com.batsworks.interfaces.utils.Currency;
-import com.batsworks.interfaces.utils.FindResource;
+import com.batsworks.interfaces.utils.DefaultController;
 import com.batsworks.interfaces.utils.TableConsume;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,6 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -31,8 +34,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class AdmController implements Initializable {
+public class AdmController extends DefaultController implements Initializable {
 
+    private static UsuariosEntity usuariosEntity;
     CustomRepository<UsuariosEntity> repository;
     CustomRepository<ProdutosEntity> produtosRepository;
     @FXML
@@ -43,6 +47,8 @@ public class AdmController implements Initializable {
     TextField pessoaFilter;
     @FXML
     TextField produtoFilter;
+    @FXML
+    Button btnShowUser;
     ObservableList<UsuariosEntity> entityObservableList = FXCollections.observableArrayList();
     ObservableList<ProdutosEntity> productObservableList = FXCollections.observableArrayList();
 
@@ -72,13 +78,10 @@ public class AdmController implements Initializable {
             if (newValue == null || newValue.isEmpty() || newValue.isBlank()) return true;
 
             String keyword = newValue.toLowerCase(Locale.ROOT);
-            if (searchModel.getAdm().toString().contains(keyword)) {
-                return true;
-            } else if (searchModel.getNome().toLowerCase(Locale.ROOT).contains(keyword)) {
-                return true;
-            } else if (searchModel.getEmail().toLowerCase(Locale.ROOT).contains(keyword)) {
-                return true;
-            } else return false;
+            return searchModel.getAdm().toString().contains(keyword)
+                    || searchModel.getNome().toLowerCase(Locale.ROOT).contains(keyword)
+                    || searchModel.getEmail().toLowerCase(Locale.ROOT).contains(keyword);
+
         })));
 
         SortedList<UsuariosEntity> entitySortedList = new SortedList<>(filteredList);
@@ -92,13 +95,9 @@ public class AdmController implements Initializable {
             if (newValue == null || newValue.isEmpty() || newValue.isBlank()) return true;
 
             String keyword = newValue.toLowerCase(Locale.ROOT);
-            if (searchModel.getDescricao().equals(keyword)) {
-                return true;
-            } else if (searchModel.getNome().toLowerCase(Locale.ROOT).contains(keyword)) {
-                return true;
-            } else if (searchModel.getValor().toLowerCase(Locale.ROOT).contains(keyword)) {
-                return true;
-            } else return false;
+            return searchModel.getDescricao().equals(keyword)
+                    || (searchModel.getNome().toLowerCase(Locale.ROOT).contains(keyword)
+                    || (searchModel.getValor().toLowerCase(Locale.ROOT).contains(keyword)));
         })));
 
         SortedList<ProdutosEntity> entitySortedList = new SortedList<>(filteredList);
@@ -106,14 +105,6 @@ public class AdmController implements Initializable {
         tableProdutos.setItems(entitySortedList);
     }
 
-    @FXML
-    protected void onSair(ActionEvent event) {
-        try {
-            FindResource.changeScreen("hello-view.fxml", HelloController.class.getName(), event);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     @FXML
     protected void onRemove(ActionEvent event) {
@@ -137,8 +128,12 @@ public class AdmController implements Initializable {
 
     @FXML
     protected void onAdd() throws Exception {
-        Parent root = FXMLLoader.load(FindResource.resource("cadastro-view.fxml", CadastroView.class.getName()));
+        FXMLLoader loader = new FXMLLoader(Change.resource(Screens.CADASTRO_USUARIO, CadastroView.class.getName()));
+        Parent root = loader.load();
         Stage register = new Stage();
+        if (loader.getController() instanceof DefaultController controller) {
+            controller.loadValues("hide-sair");
+        }
         register.setScene(new Scene(root));
         register.show();
 
@@ -155,4 +150,38 @@ public class AdmController implements Initializable {
         scheduler.shutdown();
     }
 
+    @FXML
+    protected void onAddProduto() throws Exception {
+        Parent root = FXMLLoader.load(Change.resource(Screens.CADASTRO_PRODUTO, CadastroView.class.getName()));
+        Stage register = new Stage();
+        register.setScene(new Scene(root));
+        register.show();
+
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        Runnable task = () -> {
+            ExecutorService executor = Executors.newSingleThreadExecutor();
+            executor.submit(() -> {
+                productObservableList.removeAll(productObservableList);
+                productObservableList.addAll(produtosRepository.findAll());
+                productObservableList.forEach(it -> it.setValor(Currency.formatToBrazilianCurrency(new BigDecimal(it.getValor()))));
+                executor.shutdown();
+            });
+        };
+        scheduler.schedule(task, 3, TimeUnit.SECONDS);
+        scheduler.shutdown();
+    }
+
+    @FXML
+    protected void updateUser(ActionEvent event) throws Exception {
+        Change.screen(Screens.ATUALIZAR_USUARIO, HelloController.class.getName(), event, usuariosEntity);
+
+    }
+
+    @Override
+    public void loadValues(Object... args) {
+        super.loadValues(args);
+        if (args[0] instanceof UsuariosEntity entity) {
+            usuariosEntity = entity;
+        }
+    }
 }
